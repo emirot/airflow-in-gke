@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web
+  namespace: airflow
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: airflow
+        tier: web
+    spec:
+      securityContext:
+        fsGroup: 1000
+      restartPolicy: Always
+      containers:
+      - command:
+        - /entrypoint.sh
+        args:  ["webserver"]
+        image: puckel/docker-airflow:1.8.2
+        name: webserver
+        volumeMounts:
+        - mountPath: /usr/local/airflow/dags
+          name: git-volume
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: config-airflow
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 60
+          timeoutSeconds: 30
+      volumes:
+      - name: git-volume
+        gitRepo:
+          repository: "https://github.com/emirot/dags.git"
+          revision: "7fd5ae5df7a7925d50b73e7c66ce013ef6165a70"
