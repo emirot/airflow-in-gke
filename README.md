@@ -1,7 +1,7 @@
 # airflow-in-gke
 Airflow in GKE
 
-###Image used: 
+### Image used: 
 
 All the hard work is done in this image : 
 
