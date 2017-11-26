@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-airflow
+  namespace: airflow
+data:
+  EXECUTOR: Celery
+  AIRFLOW_HOME: "/usr/local/airflow"
+  LOAD_EX: "y"
+  FERNET_KEY: F6QiskXzm_M374NdkFosd8JtCJi85Iis7CaYUejFuG4=
+  AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "True"
+  AIRFLOW_PASSWORD: airflow
+  POSTGRES_USER: airflow 
+  POSTGRES_DB: airflow
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: "5432"
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
