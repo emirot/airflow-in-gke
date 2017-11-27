@@ -1,9 +1,14 @@
 # airflow-in-gke
 Airflow in GKE
 
-### How to use this project
+### How to lauch the config 
 
+`kubectl create -f config/`
 
+You will have to change the key in the config map : 
+```
+python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
+```
 
 ### Image used
 
