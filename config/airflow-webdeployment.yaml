@@ -11,8 +11,6 @@ spec:
         app: airflow
         tier: web
     spec:
-      securityContext:
-        fsGroup: 1000
       restartPolicy: Always
       containers:
       - command:
