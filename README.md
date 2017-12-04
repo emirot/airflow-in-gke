@@ -1,5 +1,5 @@
 # airflow-in-gke
-Airflow in GKE
+Airflow in Google Kubernetes Engine
 
 ### How to lauch the config 
 
